@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن - اتحاد طلاب جامعة بورسعيد</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="icon" href="./assets/home/psu-logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/uonuon.png" type="image/x-icon">
+  <style>
+    :root {
+      --primary-color: #D4AF37; /* ذهبي */
+      --primary-hover: #001fce; /* فضي */
+      --accent-color: #D4AF37; /* ذهبي */
+      --golden-hover: #3498db; /* أزرق */
+      --silver-color: #C0C0C0; /* فضي */
+      --silver-hover: #0066ff;
+      --blue-color: #3498db; /* أزرق */
+      --blue-hover: #2980b9;
+      --text-color: #fff;
+      --text-dark: #2c3e50;
+      --bg-overlay: rgba(0, 0, 0, 0.6);
+      --form-bg: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(255,255,255,0.2);
+      --input-hover: rgba(255,255,255,0.3);
+      --border-radius: 14px;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(0, 0, 0, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --mobile-breakpoint: 768px;
+      --tablet-breakpoint: 992px;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient( rgba(0, 20, 100, 0.445) 0%, rgba(0, 40, 80, 0.514) ), url(./assets/bg2.jpg) fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      font-size: 16px;
+      position: relative;
+      color: var(--text-color);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    /* شريط التنقل المعدل */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: transparent;
+      backdrop-filter: blur(2px);
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      min-width: 120px;
+    }
+    
+    .logo-section img {
+      height: 60px;
+      width: auto;
+      transition: transform 0.3s;
+      cursor: pointer;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+    
+    .back-btn {
+      padding: 10px 20px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .back-btn:hover {
+      background: var(--blue-color);
+      transform: translateY(-2px);
+    }
+    
+    /* محتوى الصفحة */
+    .about-page-container {
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+    
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 0 5%;
+    }
+    
+    .page-title {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    }
+    
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 5px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+    
+    .page-subtitle {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    /* أقسام الصفحة */
+    .about-section {
+      padding: 60px 5%;
+      margin-bottom: 40px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--glass-border);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .section-content {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .value-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
+      background: var(--blue-color);
+    }
+    
+    .value-icon {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+    
+    .value-card:hover .value-icon {
+      color: var(--text-color);
+    }
+    
+    .value-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+    
+    .value-card:hover .value-title {
+      color: var(--text-color);
+    }
+    
+    .value-desc {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .goals-list {
+      list-style: none;
+      padding: 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .goals-list li {
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .goals-list li::before {
+      content: '✓';
+      color: var(--accent-color);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .service-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      background: var(--blue-color);
+    }
+    
+    .service-icon {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+    
+    .service-card:hover .service-icon {
+      color: var(--text-color);
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+    
+    .service-card:hover .service-title {
+      color: var(--text-color);
+    }
+    
+    .service-desc {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .contact-card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+      background: var(--blue-color);
+    }
+    
+    .contact-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    
+    .contact-card:hover .contact-icon {
+      color: var(--text-color);
+    }
+    
+    .contact-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    
+    .contact-details {
+      font-size: 1.1rem;
+    }
+    
+    /* الفوتر */
+    .footer {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      padding: 40px 5% 20px;
+      border-top: 1px solid var(--glass-border);
+      text-align: right;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: right;
+    }
+    
+    .footer-col {
+      text-align: right;
+      direction: rtl;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .footer-logo img {
+      height: 70px;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+    
+    .footer-about {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      text-align: right;
+      font-weight: 500;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      font-size: 1.4em;
+      border: 1px solid var(--glass-border);
+      text-decoration: none;
+    }
+    
+    .footer-social-icon:hover {
+      background: var(--blue-color);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+      color: var(--text-color);
+    }
+    
+    .footer-links h3 {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      color: var(--accent-color);
+      text-align: right;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      text-align: right;
+    }
+    
+    .footer-links li {
+      margin-bottom: 15px;
+      text-align: right;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    
+    .footer-links a:hover {
+      color: var(--blue-color);
+      padding-right: 8px;
+    }
+    
+    .footer-divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: 40px 0;
+      grid-column: 1 / -1;
+    }
+    
+    .footer-copyright {
+      text-align: center;
+      font-size: 1.1rem;
+      opacity: 0.7;
+      grid-column: 1 / -1;
+      font-weight: 500;
+    }
+    
+    /* تحسينات للهواتف */
+    @media (max-width: 768px) {
+      .nav-bar {
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .page-title {
+        font-size: 2.8rem;
+      }
+      
+      .page-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="particles-js"></div>
+
+<!-- شريط التنقل المعدل -->
+<div class="nav-bar">
+  <div class="logo-section">
+    <img src="./assets/PORT.png" alt="جامعة بورسعيد">
+    <img src="./assets/uonuon.png" alt="اتحاد طلاب جامعة بورسعيد">
+  </div>
+</div>
+
+<!-- محتوى الصفحة -->
+<div class="about-page-container">
+  <div class="page-header wow animate__animated animate__fadeIn">
+    <h1 class="page-title">من نحن</h1>
+    <p class="page-subtitle">اتحاد طلاب جامعة بورسعيد هو الهيئة الطلابية الرسمية التي تمثل طلاب الجامعة وتعمل على تنظيم الأنشطة الطلابية والفعاليات المختلفة التي تخدم الطلاب وتطور مهاراتهم.</p>
+    <br><br>
+    <a href="index.html" class="back-btn wow animate__animated animate__fadeInUp"><i class='bx bx-arrow-back'></i> العودة إلى الرئيسية</a>
+  </div>
+  
+  <!-- قسم الرؤية والرسالة والقيم -->
+  <section id="values" class="about-section wow animate__animated animate__fadeIn">
+    <h2 class="section-title">رؤيتنا، رسالتنا وقيمنا</h2>
+    
+    <div class="values-grid">
+      <div class="value-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <div class="value-icon"><i class='bx bx-target-lock'></i></div>
+        <h3 class="value-title">الرؤية</h3>
+        <p class="value-desc">أن نكون اتحاداً طلابياً رائداً على مستوى الجامعات المصرية، يعمل على تمكين الطلاب وتنمية قدراتهم القيادية وإعدادهم للمستقبل.</p>
+      </div>
+      
+      <div class="value-card wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+        <div class="value-icon"><i class='bx bx-message-alt-detail'></i></div>
+        <h3 class="value-title">الرسالة</h3>
+        <p class="value-desc">تمثيل طلاب جامعة بورسعيد تمثيلاً فعالاً، والعمل على تنمية مهاراتهم وقدراتهم من خلال الأنشطة الطلابية المتنوعة، والمساهمة في بناء جيل واعٍ قادر على تحمل المسؤولية.</p>
+      </div>
+      
+      <div class="value-card wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+        <div class="value-icon"><i class='bx bx-heart'></i></div>
+        <h3 class="value-title">القيم</h3>
+        <p class="value-desc">نؤمن بالشفافية، النزاهة، العمل الجماعي، الإبداع، الابتكار، الاحترام المتبادل، والمسؤولية الاجتماعية تجاه المجتمع الطلابي والمجتمع المحيط.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- قسم الأهداف -->
+  <section id="goals" class="about-section wow animate__animated animate__fadeIn">
+    <h2 class="section-title">أهدافنا</h2>
+    
+    <ul class="goals-list">
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.1s">تمثيل طلاب جامعة بورسعيد تمثيلاً فعالاً أمام إدارة الجامعة والجهات الخارجية.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.2s">تنظيم الأنشطة الطلابية والفعاليات التي تساهم في تنمية مهارات الطلاب وقدراتهم.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.3s">تعزيز روح الانتماء للجامعة والوطن بين الطلاب.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.4s">دعم المواهب الطلابية في مختلف المجالات وتوفير البيئة المناسبة لصقلها.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.5s">تعزيز التواصل والتعاون بين الطلاب وأعضاء هيئة التدريس والإدارة.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.6s">المساهمة في حل المشكلات التي تواجه الطلاب والعمل على تلبية احتياجاتهم.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.7s">تنمية الوعي الثقافي والاجتماعي والسياسي بين الطلاب.</li>
+      <li class="wow animate__animated animate__fadeInRight" data-wow-delay="0.8s">تعزيز القيم الأخلاقية والوطنية بين الطلاب.</li>
+    </ul>
+  </section>
+  
+  <!-- قسم دور الاتحاد وخدماته (القسم الجديد) -->
+  <section id="services" class="about-section wow animate__animated animate__fadeIn">
+    <h2 class="section-title">دور الاتحاد وخدماته</h2>
+    <p class="section-content">
+      يقدم اتحاد طلاب جامعة بورسعيد مجموعة متنوعة من الخدمات والبرامج التي تهدف إلى دعم الطلاب وتطوير مهاراتهم وتحسين تجربتهم الجامعية. نحن نعمل على تمكين الطلاب من خلال توفير بيئة داعمة وإمكانيات متعددة.
+    </p>
+    
+    <div class="services-grid">
+      <div class="service-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <div class="service-icon"><i class='bx bx-book-open'></i></div>
+        <h3 class="service-title">الدعم الأكاديمي</h3>
+        <p class="service-desc">نوفر ورش عمل وندوات وجلسات تعليمية لمساعدة الطلاب في مسيرتهم الأكاديمية وتحسين مستواهم الدراسي.</p>
+      </div>
+      
+      <div class="service-card wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+        <div class="service-icon"><i class='bx bx-group'></i></div>
+        <h3 class="service-title">الأنشطة الطلابية</h3>
+        <p class="service-desc">ننظم فعاليات ثقافية ورياضية واجتماعية متنوعة لتطوير مهارات الطلاب وتعزيز التواصل بينهم.</p>
+      </div>
+      
+      <div class="service-card wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+        <div class="service-icon"><i class='bx bx-support'></i></div>
+        <h3 class="service-title">الدعم والاستشارات</h3>
+        <p class="service-desc">نقدم استشارات ودعمًا للطلاب في مختلف القضايا التي تواجههم خلال حياتهم الجامعية.</p>
+      </div>
+      
+      <div class="service-card wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+        <div class="service-icon"><i class='bx bx-briefcase'></i></div>
+        <h3 class="service-title">التطوير المهني</h3>
+        <p class="service-desc">نساعد الطلاب على تطوير مهاراتهم المهنية من خلال ورش العمل والتدريبات وربطهم بفرص العمل.</p>
+      </div>
+      
+      <div class="service-card wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
+        <div class="service-icon"><i class='bx bx-world'></i></div>
+        <h3 class="service-title">التبادل الطلابي</h3>
+        <p class="service-desc">نعمل على تعزيز فرص التبادل الطلابي والتعاون مع المؤسسات التعليمية الأخرى محليًا ودوليًا.</p>
+      </div>
+      
+      <div class="service-card wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">
+        <div class="service-icon"><i class='bx bx-heart-circle'></i></div>
+        <h3 class="service-title">المسؤولية الاجتماعية</h3>
+        <p class="service-desc">ننظم مبادرات تطوعية وبرامج خدمة مجتمعية لتعزيز روح العطاء والمسؤولية الاجتماعية لدى الطلاب.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- قسم اتصل بنا -->
+  <section id="contact" class="about-section wow animate__animated animate__fadeIn">
+    <h2 class="section-title">اتصل بنا</h2>
+    <p class="section-content">
+      نرحب بآرائكم ومقترحاتكم ونسعد بتواصلكم معنا. يمكنكم التواصل مع اتحاد الطلاب عبر القنوات التالية:
+    </p>
+    
+    <div class="contact-info">
+      <div class="contact-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <div class="contact-icon"><i class='bx bx-map'></i></div>
+        <h3 class="contact-title">العنوان</h3>
+        <p class="contact-details">جامعة بورسعيد، بورسعيد، مصر</p>
+      </div>
+      
+      <div class="contact-card wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+        <div class="contact-icon"><i class='bx bx-phone'></i></div>
+        <h3 class="contact-title">الهاتف</h3>
+        <p class="contact-details">+1234567890</p>
+      </div>
+      
+      <div class="contact-card wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+        <div class="contact-icon"><i class='bx bx-envelope'></i></div>
+        <h3 class="contact-title">البريد الإلكتروني</h3>
+        <p class="contact-details">info@psu.edu.eg</p>
+      </div>
+      
+      <div class="contact-card wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+        <div class="contact-icon"><i class='bx bx-time-five'></i></div>
+        <h3 class="contact-title">أوقات العمل</h3>
+        <p class="contact-details">الأحد - الخميس: 8 ص - 4 م</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- الفوتر -->
+<div class="footer">
+  <div class="footer-content">
+    <div class="footer-col wow animate__animated animate__fadeIn">
+      <div class="footer-logo">
+        <img src="./assets/PORT.png" alt="جامعة بورسعيد">
+        <img src="./assets/uonuon.png" alt="اتحاد طلاب جامعة بورسعيد">
+      </div>
+      
+      <p class="footer-about">
+        اتحاد طلاب جامعة بورسعيد هو الهيئة الطلابية الرسمية التي تمثل طلاب الجامعة وتعمل على تنظيم الأنشطة الطلابية والفعاليات المختلفة التي تخدم الطلاب وتطور مهاراتهم.
+      </p>
+      
+      <div class="footer-social">
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-facebook'></i></a>
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-instagram'></i></a>
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-twitter'></i></a>
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-youtube'></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-col wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
+      <h3 class="footer-links-title">روابط سريعة</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="#values">قيمنا</a></li>
+        <li><a href="#goals">أهدافنا</a></li>
+        <li><a href="#services">خدماتنا</a></li>
+        <li><a href="#contact">اتصل بنا</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col wow animate__animated animate__fadeIn" data-wow-delay="0.4s">
+      <h3 class="footer-links-title">معلومات الاتصال</h3>
+      <ul class="footer-links">
+        <li><i class='bx bx-map'></i> جامعة بورسعيد، بورسعيد، مصر</li>
+        <li><i class='bx bx-phone'></i> +1234567890</li>
+        <li><i class='bx bx-envelope'></i> info@psu.edu.eg</li>
+        <li><i class='bx bx-time-five'></i> الأحد - الخميس: 8 ص - 4 م</li>
+      </ul>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-copyright">
+      <span>&copy; 2025 جميع الحقوق محفوظة لاتحاد طلاب جامعة بورسعيد</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // تهيئة تأثير الجسيمات باللون الأبيض
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // تهيئة مكتبة WOW.js
+    new WOW().init();
+  });
+</script>
+</body>
+</html>

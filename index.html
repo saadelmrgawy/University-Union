@@ -1,0 +1,3144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اتحاد طلاب جامعة بورسعيد</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- استبدال Font Awesome بـ Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="icon" href="./assets/home/psu-logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/uonuon.png" type="image/x-icon">
+  <style>
+    :root {
+      --primary-color: #D4AF37; /* ذهبي */
+      --primary-hover: #001fce; /* فضي */
+      --accent-color: #D4AF37; /* ذهبي */
+      --golden-hover: #3498db; /* أزرق */
+      --silver-color: #C0C0C0; /* فضي */
+      --silver-hover: #0066ff;
+      --blue-color: #3498db; /* أزرق */
+      --blue-hover: #2980b9;
+      --text-color: #fff;
+      --text-dark: #2c3e50;
+      --bg-overlay: rgba(0, 0, 0, 0.6); /* زيادة العتامة */
+      --form-bg: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(255,255,255,0.2);
+      --input-hover: rgba(255,255,255,0.3);
+      --border-radius: 14px;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(0, 0, 0, 0.4); /* زيادة العتامة */
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --mobile-breakpoint: 768px;
+      --tablet-breakpoint: 992px;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient( rgba(0, 20, 100, 0.445) 0%, rgba(0, 40, 80, 0.514) ), url(./assets/bg2.jpg) fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      font-size: 16px;
+      position: relative;
+      color: var(--text-color);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* إضافة ظل للنص لتحسين القراءة */
+    }
+    
+    /* تأثير الجسيمات المتحركة */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    /* شريط التنقل الشفاف مع تأثير زجاجي */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    
+    @keyframes slideDownNav {
+      to {
+        transform: translateY(0);
+      }
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      min-width: 120px;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.3s forwards;
+    }
+    
+    .logo-section img {
+      height: 60px;
+      width: auto;
+      transition: transform 0.3s;
+      cursor: pointer;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+    
+    /* تحسينات البحث */
+    .search-container {
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.5s forwards;
+    }
+
+    .search-icon {
+      color: var(--text-color);
+      font-size: 1.5em; /* زيادة حجم الأيقونة */
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 12px 16px; /* زيادة الحشوة لتكبير الأيقونة */
+      border-radius: var(--border-radius);
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .search-icon:hover {
+      background: var(--blue-color);
+      color: var(--text-color);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+    }
+
+    .search-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    .search-icon:hover::before {
+      transform: translateX(100%);
+    }
+
+    .search-bar {
+      position: fixed;
+      top: 90px;
+      right: 5%;
+      width: 90%;
+      max-width: 500px;
+      background: rgba(0, 0, 0, 0.95);
+      border-radius: var(--border-radius);
+      padding: 15px;
+      display: none;
+      z-index: 100;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transform-origin: top center;
+      backdrop-filter: blur(10px);
+    }
+
+    .search-bar.active {
+      display: block;
+      animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: var(--border-radius);
+      border: none;
+      background: var(--input-bg);
+      color: white;
+      transition: all 0.3s;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1em;
+      border: 1px solid var(--glass-border);
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      background: var(--input-hover);
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+      border-color: var(--blue-color);
+    }
+
+    .search-bar input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .search-btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border-radius: var(--border-radius);
+      background: var(--blue-color);
+      color: var(--text-color);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .search-btn:hover {
+      background: var(--blue-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+
+    @keyframes slideDown {
+      from { 
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to { 
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    /* السلايدر الرئيسي - بدون هامش علوي */
+    .main-slider {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 50px;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.7) 0%, rgba(42, 74, 127, 0.6) 100%);
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+    
+    /* محتوى ثابت فوق السلايدر - تصميم جديد بدون صندوق البلور */
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 90%;
+      max-width: 900px;
+      z-index: 10;
+      padding: 40px;
+    }
+    
+    .hero-title {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      line-height: 1.3;
+      font-weight: 800;
+      font-family: 'Cairo', sans-serif;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, var(--accent-color), #f8d56c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s infinite alternate;
+    }
+    
+    @keyframes titleGlow {
+      0% {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      }
+      100% {
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.6);
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.5);
+      font-weight: 500;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    
+    .hero-btn {
+      padding: 15px 30px;
+      border-radius: var(--border-radius);
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      font-size: 1.1rem;
+      min-width: 200px;
+      text-align: center;
+      display: inline-block;
+      border: 1px solid var(--glass-border);
+    }
+
+    .hero-btn:hover {
+      background: var(--blue-color);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4);
+      color: var(--text-color);
+    }
+
+    .hero-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    .hero-btn:hover::before {
+      transform: translateX(100%);
+    }
+    
+    /* أيقونات السوشيال ميديا بشكل عمودي - تصميم جديد أكثر احترافية */
+    .vertical-social-icons {
+      position: absolute;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.7s forwards;
+    }
+    
+    .social-icon-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      font-size: 1.5em;
+      border: 1px solid var(--glass-border);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    
+    .social-icon-btn:nth-child(1) { animation: slideInLeftIcon 0.6s ease 0.8s forwards; }
+    .social-icon-btn:nth-child(2) { animation: slideInLeftIcon 0.6s ease 0.9s forwards; }
+    .social-icon-btn:nth-child(3) { animation: slideInLeftIcon 0.6s ease 1.0s forwards; }
+    .social-icon-btn:nth-child(4) { animation: slideInLeftIcon 0.6s ease 1.1s forwards; }
+    
+    @keyframes slideInLeftIcon {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .social-icon-btn:hover {
+      background: var(--blue-color);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+      color: var(--text-color);
+    }
+    
+    .social-icon-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .social-icon-btn:hover::before {
+      transform: translateX(100%);
+    }
+    
+    /* تحسينات جديدة للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .hero-content {
+        top: 45%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-btn {
+        width: 80%;
+        max-width: 250px;
+        padding: 12px 0;
+        margin-bottom: 10px;
+      }
+      
+      .vertical-social-icons {
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        top: auto;
+        bottom: 20px;
+        gap: 10px;
+      }
+      
+      .social-icon-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-content {
+        top: 40%;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+    
+    /* قسم الأحداث والفعاليات - تصميم جديد */
+    .events-section {
+      padding: 40px 5%;
+      background: transparent;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .section-title {
+      font-size: 3.5rem;
+      color: var(--accent-color);
+      margin: 0 auto 20px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 5px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+    
+    .events-slider-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    
+    .events-slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .event-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid var(--glass-border);
+      height: 550px; /* زيادة الارتفاع من 450px إلى 550px */
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 calc(100% - 40px);
+      margin: 0 20px;
+      min-width: calc(100% - 40px);
+      box-sizing: border-box;
+    }
+    
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    
+    .event-card-image {
+      height: 280px; /* زيادة الارتفاع من 220px إلى 280px */
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .event-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .event-card:hover .event-card-image img {
+      transform: scale(1.1);
+    }
+    
+    .event-card-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .event-card-date {
+      color: var(--accent-color);
+      font-size: 1em;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+    }
+    
+    .event-card-title {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .event-card-desc {
+      font-size: 1.1em;
+      opacity: 0.9;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      flex-grow: 1;
+      font-weight: 500;
+    }
+    
+    .event-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    
+    .event-card-committee {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .event-card-committee img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+    
+    .event-card-committee span {
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+    
+    .event-card-link {
+      padding: 10px 18px;
+      border-radius: var(--border-radius);
+      background: var(--blue-color);
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      font-size: 1em;
+    }
+    
+    .event-card-link:hover {
+      background: var(--blue-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+    
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .slider-nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid var(--glass-border);
+    }
+    
+    .slider-nav-btn:hover {
+      background: var(--blue-color);
+      color: var(--text-color);
+      transform: scale(1.1);
+    }
+    
+    /* قسم معلومات عنا */
+    .about-section {
+      padding: 40px 5%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+    }
+    
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .about-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      padding: 0 10px;
+      font-weight: 500;
+    }
+    
+    /* قسم شعارات الشركاء - تحسينات للجوال */
+    .about-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      margin: 40px 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .about-logos::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2px;
+      height: 120px;
+      background: var(--glass-border);
+      z-index: 0;
+    }
+
+    .about-logo {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: contain;
+      padding: 15px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      border: 2px solid var(--glass-border);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .about-logo:hover {
+      transform: scale(1.15) translateY(-5px);
+      background: var(--blue-color);
+      border-color: var(--blue-color);
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+      filter: brightness(1.1);
+      z-index: 1;
+    }
+
+    .about-logo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    .about-logo:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* تعديلات للشاشات المتوسطة */
+    @media (max-width: 1200px) {
+      .about-logos {
+        gap: 40px;
+      }
+      .about-logo {
+        width: 150px;
+        height: 150px;
+      }
+      .about-logos::after {
+        height: 100px;
+      }
+    }
+
+    /* تعديلات للهواتف */
+    @media (max-width: 768px) {
+      .about-logos {
+        gap: 30px;
+        margin: 30px 0;
+        flex-direction: row;
+      }
+      .about-logo {
+        width: 130px;
+        height: 130px;
+        padding: 12px;
+      }
+      .about-logos::after {
+        display: block;
+        height: 100px;
+      }
+    }
+
+    /* تعديلات للهواتف الصغيرة */
+    @media (max-width: 480px) {
+      .about-logos {
+        gap: 20px;
+      }
+      .about-logo {
+        width: 110px;
+        height: 110px;
+        padding: 10px;
+      }
+      .about-logos::after {
+        height: 90px;
+      }
+    }
+    
+    .about-btn {
+      padding: 14px 35px;
+      border-radius: var(--border-radius);
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      font-size: 1.1rem;
+    }
+    
+    .about-btn:hover {
+      background: var(--blue-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+      color: var(--text-color);
+    }
+    
+    .about-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .about-btn:hover::before {
+      transform: translateX(100%);
+    }
+    
+    /* قسم الرؤية والرسالة - تصميم جديد ومعدل */
+    .vision-mission-section {
+      padding: 40px 5%;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .vision-mission-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .vision-card, .mission-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 70px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .vision-card:hover, .mission-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(192, 192, 192, 0.2));
+    }
+    
+    .vision-image, .mission-image {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 30px;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+    
+    .vision-card:hover .vision-image, .mission-card:hover .mission-image {
+      transform: scale(1.15);
+    }
+    
+    .vision-card-title, .mission-card-title {
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      color: var(--accent-color);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .vision-card-text, .mission-card-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+    
+    /* قسم اللجان - تصميم جديد ومعدل */
+    .committees-section {
+      padding: 40px 5%;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .committees-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .committees-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .committee-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 50px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 500px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .committee-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(192, 192, 192, 0.2));
+    }
+    
+    .committee-image {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 30px;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+    
+    .committee-card:hover .committee-image {
+      transform: scale(1.15);
+    }
+    
+    .committee-name-large {
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .committee-desc-large {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+    
+    .committee-link-large {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--blue-color);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+    }
+    
+    .committee-link-large:hover {
+      background: var(--blue-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+    
+    /* قسم الإحصائيات */
+    .stats-section {
+      padding: 40px 5%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      border-radius: var(--border-radius);
+      padding: 35px 25px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .stat-card:hover {
+      background: var(--blue-color);
+      color: var(--text-color);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    .stat-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 15px 0;
+      color: var(--accent-color);
+      transition: all 0.3s;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .stat-card:hover .stat-value {
+      color: var(--text-color);
+    }
+    
+    .stat-card:hover .stat-label {
+      color: var(--text-color);
+    }
+    
+    /* قسم لوحة المشروع - تصميم معدل */
+    .team-section {
+      padding: 40px 5%;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .team-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .team-department-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 50px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .team-department-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(192, 192, 192, 0.2));
+    }
+    
+    .department-header {
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .department-image {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 25px;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+    
+    .team-department-card:hover .department-image {
+      transform: scale(1.1);
+    }
+    
+    .department-name {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .department-desc {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    
+    .officials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    
+    .official-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 1px solid var(--glass-border);
+    }
+    
+    .official-card:hover {
+      transform: translateY(-5px);
+      background: var(--blue-color);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    .official-card:hover .official-name,
+    .official-card:hover .official-role {
+      color: var(--text-color);
+    }
+    
+    .official-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px;
+      border: 2px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .official-card:hover .official-avatar {
+      border-color: var(--silver-color);
+      transform: scale(1.05);
+    }
+    
+    .official-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .official-role {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      font-weight: 500;
+    }
+    
+    /* قسم الاتحادات الفرعية - تصميم جديد */
+    .locations-section {
+      padding: 40px 5%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+      position: relative;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .location-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .location-card:hover {
+      background: var(--blue-color);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(52, 152, 219, 0.3);
+    }
+
+    .location-card:hover .location-name {
+      color: var(--text-color);
+    }
+
+    .location-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    .location-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .location-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin: 0 auto 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .location-card:hover .location-logo {
+      transform: scale(1.15);
+    }
+
+    .location-name {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin: 0;
+      transition: color 0.3s ease;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    /* قسم أين نحن - جديد */
+    .where-we-are-section {
+      padding: 40px 5%;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .where-we-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    .map-container {
+      height: 450px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .location-info {
+      text-align: right;
+      padding: 40px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 1px solid var(--glass-border);
+    }
+    
+    .location-info h3 {
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      margin-bottom: 30px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .location-info p {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 500;
+    }
+    
+    .location-info i {
+      color: var(--accent-color);
+      font-size: 1.5rem;
+    }
+    
+    /* قسم آراء الطلاب - تصميم جديد */
+    .testimonials-section {
+      padding: 40px 5%;
+      margin-bottom: 30px;
+      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+    }
+    
+    .testimonials-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonials-slider-new {
+      position: relative;
+      overflow: hidden;
+      height: 380px;
+    }
+    
+    .testimonial-slide-new {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .testimonial-slide-new.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    
+    .testimonial-card-new {
+      width: 85%;
+      min-height: 320px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .testimonial-card-new:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+    
+    .testimonial-text-new {
+      font-style: italic;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      position: relative;
+      font-size: 1.3rem;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .testimonial-text-new::before,
+    .testimonial-text-new::after {
+      content: '"';
+      font-size: 3.5em;
+      color: var(--accent-color);
+      opacity: 0.3;
+      position: absolute;
+    }
+    
+    .testimonial-text-new::before {
+      top: -20px;
+      left: -15px;
+    }
+    
+    .testimonial-text-new::after {
+      bottom: -40px;
+      right: -15px;
+    }
+    
+    .testimonial-author-new {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+      margin-top: auto;
+    }
+    
+    .author-avatar-new {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card-new:hover .author-avatar-new {
+      border-color: var(--silver-color);
+      transform: scale(1.05);
+    }
+    
+    .author-info-new {
+      flex-grow: 1;
+      text-align: right;
+    }
+    
+    .author-name-new {
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .author-role-new {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+    
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .testimonial-nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid var(--glass-border);
+      font-size: 1.3em;
+    }
+    
+    .testimonial-nav-btn:hover {
+      background: var(--blue-color);
+      color: var(--text-color);
+      transform: scale(1.1);
+    }
+    
+    /* الفوتر المعدل */
+    .footer {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      padding: 40px 5% 20px;
+      border-top: 1px solid var(--glass-border);
+      text-align: right;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: right;
+    }
+    
+    .footer-col {
+      text-align: right;
+      direction: rtl;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .footer-logo img {
+      height: 70px;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+    
+    .footer-about {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      text-align: right;
+      font-weight: 500;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      font-size: 1.4em;
+      border: 1px solid var(--glass-border);
+      text-decoration: none;
+    }
+    
+    .footer-social-icon:hover {
+      background: var(--blue-color);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+      color: var(--text-color);
+    }
+    
+    .footer-social-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .footer-social-icon:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .footer-links h3 {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      color: var(--accent-color);
+      text-align: right;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      text-align: right;
+    }
+    
+    .footer-links li {
+      margin-bottom: 15px;
+      text-align: right;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    
+    .footer-links a:hover {
+      color: var(--blue-color);
+      padding-right: 8px;
+    }
+    
+    .footer-divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: 40px 0;
+      grid-column: 1 / -1;
+    }
+    
+    .footer-copyright {
+      text-align: center;
+      font-size: 1.1rem;
+      opacity: 0.7;
+      grid-column: 1 / -1;
+      font-weight: 500;
+    }
+    
+    /* تحسينات للهواتف المحمولة */
+    @media (max-width: 1200px) {
+      .vision-mission-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .vision-card, .mission-card {
+        height: auto;
+        padding: 40px;
+      }
+      
+      .committees-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .where-we-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .map-container {
+        height: 350px;
+      }
+      
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      
+      .committees-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .committee-card {
+        height: auto;
+        padding: 35px;
+      }
+      
+      .committee-image {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .committee-name-large {
+        font-size: 1.6rem;
+      }
+      
+      .committee-desc-large {
+        font-size: 1.1rem;
+      }
+      
+      .testimonial-card-new {
+        width: 90%;
+        padding: 30px;
+      }
+      
+      .testimonial-text-new {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-bar {
+        padding: 15px 5%;
+      }
+      
+      .logo-section img {
+        height: 50px;
+      }
+      
+      .search-icon {
+        padding: 8px;
+      }
+      
+      .search-bar {
+        width: 90%;
+        right: 5%;
+        top: 80px;
+      }
+      
+      .main-slider {
+        height: 100vh;
+        margin-top: 0;
+      }
+      
+      .hero-content {
+        margin-top: 0;
+      }
+      
+      .hero-title {
+        font-size: 3.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .event-card {
+        flex: 0 0 calc(100% - 20px);
+        height: auto;
+        margin: 0 10px;
+      }
+      
+      .vision-card, .mission-card {
+        padding: 30px;
+        height: auto;
+      }
+      
+      .vision-image, .mission-image {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .vision-card-title, .mission-card-title {
+        font-size: 1.9rem;
+      }
+      
+      .vision-card-text, .mission-card-text {
+        font-size: 1.2rem;
+      }
+      
+      .committee-card {
+        height: auto;
+        padding: 30px;
+      }
+      
+      .committee-image {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .committee-name-large {
+        font-size: 1.5rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .officials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .locations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .location-card {
+        height: 200px;
+        padding: 20px;
+      }
+      
+      .location-logo {
+        width: 80px;
+        height: 80px;
+      }
+      
+      /* تحسينات خاصة لقسم آراء الطلاب على الموبايل */
+      .testimonials-slider-new {
+        height: auto;
+        min-height: 450px;
+      }
+      
+      .testimonial-card-new {
+        width: 95%;
+        padding: 25px;
+        min-height: 380px;
+      }
+      
+      .testimonial-author-new {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .author-info-new {
+        text-align: center;
+      }
+      
+      .author-avatar-new {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .footer-col {
+        text-align: center;
+      }
+      
+      .footer-links ul {
+        text-align: center;
+      }
+      
+      .footer-links a:hover {
+        padding-right: 0;
+        padding-left: 8px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+      }
+      
+      .hero-btn {
+        width: 100%;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .officials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .locations-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .location-card {
+        height: 180px;
+        padding: 15px;
+      }
+      
+      .location-logo {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .location-name {
+        font-size: 1.3rem;
+      }
+      
+      .testimonial-author-new {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .author-info-new {
+        text-align: center;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-col {
+        text-align: center;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .search-bar {
+        width: 95%;
+        right: 2.5%;
+      }
+      
+      .vision-card, .mission-card {
+        padding: 25px;
+      }
+      
+      .vision-image, .mission-image {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .vision-card-title, .mission-card-title {
+        font-size: 1.7rem;
+      }
+      
+      .committee-card {
+        padding: 25px;
+      }
+      
+      .committee-image {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .committee-name-large {
+        font-size: 1.4rem;
+      }
+      
+      .testimonial-card-new {
+        padding: 20px;
+      }
+      
+      .testimonial-text-new {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* أنماط جديدة للايقونات المتحركة */
+    .lottie-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+    }
+
+    /* تحسينات إضافية للجوانب المختلفة */
+    .committee-card .lottie-icon {
+      margin-bottom: 20px;
+    }
+
+    .vision-card .lottie-icon,
+    .mission-card .lottie-icon {
+      margin-bottom: 25px;
+    }
+    
+    /* أنماط نتائج البحث */
+    .search-results {
+      margin-top: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+      border-radius: var(--border-radius);
+      background: var(--input-bg);
+      padding: 10px;
+    }
+    
+    .search-result-item {
+      padding: 10px;
+      border-bottom: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .search-result-item:hover {
+      background: var(--blue-color);
+    }
+    
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .search-highlight {
+      background-color: yellow;
+      color: black;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+<div id="particles-js"></div>
+
+<!-- شريط التنقل الموحد المعدل -->
+<div class="nav-bar">
+  <div class="logo-section">
+    <img src="./assets/PORT.png" alt="جامعة بورسعيد">
+    <img src="./assets/uonuon.png" alt="اتحاد طلاب جامعة بورسعيد">
+  </div>
+  
+  <div class="search-container">
+    <div class="search-icon" id="search-icon">
+      <i class='bx bx-search'></i>
+    </div>
+    <div class="search-bar" id="search-bar">
+      <input type="text" placeholder="ابحث عن فعاليات، أخبار، أنشطة..." id="search-input">
+      <button class="search-btn" id="search-btn">بحث</button>
+      <div class="search-results" id="search-results" style="display: none;">
+        <!-- سيتم إضافة نتائج البحث هنا ديناميكيًا -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- السلايدر الرئيسي -->
+<div id="home" class="main-slider">
+  <div class="slide active" style="background-image: url('./assets/ASET1.png')"></div>
+  
+  <div class="slide" style="background-image: url('./assets/ASET2.png')"></div>
+  
+  <div class="slide" style="background-image: url('./assets/ASET3.png')"></div>
+
+  <!-- أيقونات السوشيال ميديا بشكل عمودي -->
+  <div class="vertical-social-icons">
+    <a href="#" target="_blank" class="social-icon-btn" title="Facebook">
+      <i class='bx bxl-facebook'></i>
+    </a>
+    <a href="#" target="_blank" class="social-icon-btn" title="Instagram">
+      <i class='bx bxl-instagram'></i>
+    </a>
+    <a href="#" target="_blank" class="social-icon-btn" title="Twitter">
+      <i class='bx bxl-twitter'></i>
+    </a>
+    <a href="#" target="_blank" class="social-icon-btn" title="YouTube">
+      <i class='bx bxl-youtube'></i>
+    </a>
+  </div>
+  
+  <!-- محتوى ثابت فوق السلايدر -->
+  <div class="hero-content wow animate__animated animate__zoomIn" data-wow-delay="0.5s">
+    <h2 class="hero-title">اتحاد طلاب جامعة بورسعيد</h2>
+    <p class="hero-subtitle wow animate__animated animate__zoomIn" data-wow-delay="0.8s">نحو مجتمع طلابي فعال يساهم في بناء مستقبل أفضل لطلاب جامعة بورسعيد من خلال الأنشطة الطلابية والفعاليات الهادفة</p>
+    
+    <div class="hero-buttons wow animate__animated animate__zoomIn" data-wow-delay="1.1s">
+      <a href="#team" class="hero-btn">لوحة الاتحاد</a>
+      <a href="#committees" class="hero-btn">لجان وأقسام الإتحاد</a>
+    </div>
+  </div>
+</div>
+
+<!-- قسم الأحداث والفعاليات - تصميم جديد ومعدل -->
+<div id="events" class="events-section">
+  <div class="section-header wow animate__animated animate__fadeIn">
+    <h2 class="section-title">أبرز الفعاليات والأنشطة</h2>
+  </div>
+  
+  <div class="events-slider-container">
+    <div class="events-slider" id="events-slider">
+      <div class="event-card wow animate__animated animate__fadeInRight">
+        <div class="event-card-image">
+          <img src="./assets/activ1.jpg" alt="المؤتمر الطلابي السنوي">
+        </div>
+        <div class="event-card-content">
+          <div class="event-card-date"><i class='bx bx-calendar'></i> 15 مارس 2025</div>
+          <h3 class="event-card-title">المؤتمر الطلابي السنوي</h3>
+          <p class="event-card-desc">ينظم اتحاد طلاب كلية الهندسة المؤتمر الطلابي السنوي تحت رعاية اتحاد الجامعة، يتضمن المؤتمر ورش عمل وعروض تقديمية.</p>
+          <div class="event-card-footer">
+            <div class="event-card-committee">
+              <img src="./assets/fuculty/هندسة.png" alt="اتحاد كلية الهندسة">
+              <span>لجنة الهندسة</span>
+            </div>
+            <a href="event-details.html" class="event-card-link">معرفة المزيد</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slider-nav">
+      <div class="slider-nav-btn" id="prev-event"><i class='bx bx-chevron-right'></i></div>
+      <div class="slider-nav-btn" id="next-event"><i class='bx bx-chevron-left'></i></div>
+    </div>
+  </div>
+</div>
+
+<!-- قسم معلومات عنا -->
+<div id="about" class="about-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">من نحن</h2> <br>
+  <div class="about-content">
+    <br><br>
+    <div class="about-logos wow animate__animated animate__zoomIn" data-wow-delay="0.3s">
+      <img src="./assets/PORT.png" alt="جامعة بورسعيد" class="about-logo">
+      <img src="./assets/uonuon.png" alt="اتحاد طلاب جامعة بورسعيد" class="about-logo">
+    </div>
+    <p class="about-text wow animate__animated animate__fadeIn" data-wow-delay="0.6s">
+      اتحاد طلاب جامعة بورسعيد هو الهيئة الطلابية الرسمية التي تمثل طلاب الجامعة وتعمل على تنظيم الأنشطة الطلابية والفعاليات المختلفة. يهدف الاتحاد إلى دعم الطلاب وتطوير مهاراتهم وقدراتهم من خلال المشاركة في الأنشطة اللامنهجية التي تساهم في بناء شخصية الطالب وتعدّه لسوق العمل.
+    </p>
+    <a href="about-us.html" class="about-btn wow animate__animated animate__fadeInUp" data-wow-delay="0.9s">اقرأ المزيد</a>
+  </div>
+</div>
+
+<!-- قسم الرؤية والرسالة - تصميم جديد ومعدل -->
+<div class="vision-mission-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">رؤيتنا ورسالتنا</h2>
+  <br><br>
+  
+  <div class="vision-mission-container">
+    <div class="vision-card wow animate__animated animate__fadeInLeft">
+      <img src="./assets/icon/vision.png" alt="رؤيتنا" class="vision-image">
+      <h3 class="vision-card-title">رؤيتنا</h3>
+      <p class="vision-card-text">نطمح إلى أن نكون اتحاداً طلابياً رائداً على مستوى الجامعات المصرية، يعمل على تمكين الطلاب وتنمية قدراتهم Leadership skills وإعدادهم للمستقبل من خلال أنشطة وفعاليات مبتكرة تواكب متطلبات العصر.</p>
+    </div>
+    
+    <div class="mission-card wow animate__animated animate__fadeInRight">
+      <img src="./assets/icon/mision.png" alt="رسالتنا" class="mission-image">
+      <h3 class="mission-card-title">رسالتنا</h3>
+      <p class="mission-card-text">نسعى إلى تمثيل طلاب جامعة بورسعيد تمثيلاً فعالاً، والعمل على تنمية مهاراتهم وقدراتهم من خلال الأنشطة الطلابية المتنوعة، والمساهمة في بناء جيل واعٍ قادر على تحمل المسؤولية وخدمة المجتمع.</p>
+    </div>
+  </div>
+</div>
+
+<!-- قسم اللجان - تصميم جديد ومعدل -->
+<div id="committees" class="committees-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">لجان وأقسام الإتحاد</h2>
+  
+  <div class="committees-container">
+    <div class="committees-grid">
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <img src="./assets/icon/expert.png" alt="الإدارة العليا" class="committee-image">
+        <h3 class="committee-name-large">الإدارة العليا للاتحاد</h3>
+        <p class="committee-desc-large">الهيئة التنفيذية العليا لاتحاد الطلاب التي تدير شؤون الاتحاد وتشرف على تنفيذ خططه وبرامجه.</p>
+        <a href="committee-details.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+        <img src="./assets/icon/cultural.png" alt="اللجنة الثقافية" class="committee-image">
+        <h3 class="committee-name-large">اللجنة الثقافية والإعلامية</h3>
+        <p class="committee-desc-large">تهتم بتنظيم الفعاليات الثقافية والمعارض الفنية وإصدار النشرات الدورية وتغطية أنشطة الاتحاد إعلامياً.</p>
+        <a href="committee-Cultural.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+        <img src="./assets/icon/hobby.png" alt="اللجنة الفنية" class="committee-image">
+        <h3 class="committee-name-large">اللجنة الفنية</h3>
+        <p class="committee-desc-large">تنظيم الحفلات الغنائية والعروض المسرحية وورش العمل الفنية والمعارض والمشاركة в المناسبات المختلفة.</p>
+        <a href="committee-Artistic.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+        <img src="./assets/icon/game.png" alt="اللجنة الرياضية" class="committee-image">
+        <h3 class="committee-name-large">اللجنة الرياضية</h3>
+        <p class="committee-desc-large">تنظيم البطولات الرياضية بين الكليات وتشجiver ممارسة الأنشطة الرياضية وتنمية الروح الرياضية بين الطلاب.</p>
+        <a href="committee-sports.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
+        <img src="./assets/icon/activism.png" alt="اللجنة الاجتماعية" class="committee-image">
+        <h3 class="committee-name-large">اللجنة الاجتماعية</h3>
+        <p class="committee-desc-large">تنظيم الرحلات والزيارات والمعسكرات الطلابية والفعاليات الاجتماعية التي تعزز الترابط بين الطلاب.</p>
+        <a href="committee-social.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">
+        <img src="./assets/icon/scientific-idea.png" alt="اللجنة العلمية" class="committee-image">
+        <h3 class="committee-name-large">اللجنة العلمية</h3>
+        <p class="committee-desc-large">تنظيم الندوات والمحاضرات العلمية وورش العمل التخصصية والمسابقات العلمية والمعارض المتخصصة.</p>
+        <a href="committee-scince.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
+        <img src="./assets/icon/symbol.png" alt="لجنة الجوالة" class="committee-image">
+        <h3 class="committee-name-large">لجنة الجوالة</h3>
+        <p class="committee-desc-large">تنظيم رحلات الكشافة والتخييم وأنشطة الهواء الطلق وتنمية روح التعاون والعمل الجماعي بين الطلاب.</p>
+        <a href="committee-scout.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+      
+      <div class="committee-card wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
+        <img src="./assets/icon/government.png" alt="لجنة الأسر" class="committee-image">
+        <h3 class="committee-name-large">لجنة الأسر</h3>
+        <p class="committee-desc-large">الإشراف على الأسر الطلابية ودعم أنشطتها وتنظيم المسابقات بين الأسر وتوثيق الروابط بين أعضائها.</p>
+        <a href="committee-government.html" class="committee-link-large">المزيد عن اللجنة</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- قسم الإحصائيات -->
+<div id="stats" class="stats-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">إحصائيات وأرقام الإتحاد للعام 2025</h2>
+  
+  <div class="stats-grid">
+    <div class="stat-card wow animate__animated animate__fadeIn" data-wow-delay="0.1s">
+      <div class="stat-label">عدد الفعاليات المنظمة</div>
+      <div class="stat-value" id="events-counter">0</div>
+    </div>
+    
+    <div class="stat-card wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
+      <div class="stat-label">عدد الطلاب المشاركين</div>
+      <div class="stat-value" id="participants-counter">0</div>
+    </div>
+    
+    <div class="stat-card wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+      <div class="stat-label">عدد اللجان النشطة</div>
+      <div class="stat-value" id="committees-counter">0</div>
+    </div>
+    
+    <div class="stat-card wow animate__animated animate__fadeIn" data-wow-delay="0.4s">
+      <div class="stat-label">عدد الأسر الطلابية</div>
+      <div class="stat-value" id="families-counter">0</div>
+    </div>
+  </div>
+</div>
+
+<!-- قسم لوحة المشروع - تصميم معدل -->
+<div id="team" class="team-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">لوحة اتحاد الجامعة</h2><br><br>
+  
+  <div class="team-container">
+    <div class="team-grid">
+      <!-- الإدارة المركزية -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp">
+        <div class="department-header">
+          <img src="./assets/icon/system.png" alt="الإدارة المركزية" class="department-image">
+          <h3 class="department-name">الإدارة المركزية</h3>
+          <p class="department-desc">هيئة الإدارة العليا بالجامعة التي تشرف على اتحاد الطلاب وتدعم أنشطته وتوفر له الموارد اللازمة لتحقيق أهدافه.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.2s">
+            <img src="./assets/manager-psu.jpg" alt="رئيس الجامعة" class="official-avatar">
+            <h4 class="official-name">أ.د. شريف يوسف صالح</h4>
+            <p class="official-role">رئيس جامعة بورسعيد</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.3s">
+            <img src="./assets/dr-bayuomy.jpg" alt="مسؤول رعاية الشباب" class="official-avatar">
+            <h4 class="official-name">د. أحمد بيومي الشافعي</h4>
+            <p class="official-role">مسؤول رعاية الشباب بالجامعة</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- الإدارة العليا للاتحاد -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <div class="department-header">
+          <img src="./assets/icon/expert.png" alt="الإدارة العليا" class="department-image">
+          <h3 class="department-name">الإدارة العليا للاتحاد</h3>
+          <p class="department-desc">الهيئة التنفيذية العليا لاتحاد الطلاب التي تدير شؤون الاتحاد وتشرف على تنفيذ خططه وبرامجه.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.2s">
+            <img src="./assets/boy1.jpg" alt="رئيس الاتحاد" class="official-avatar">
+            <h4 class="official-name">عمر أحمد</h4>
+            <p class="official-role">رئيس اتحاد الجامعة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.3s">
+            <img src="./assets/girl3.jpg" alt="نائب رئيس الاتحاد" class="official-avatar">
+            <h4 class="official-name">سارة محمود</h4>
+            <p class="official-role">نائب رئيس الاتحاد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- اللجنة الثقافية والإعلامية -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+        <div class="department-header">
+          <img src="./assets/icon/cultural.png" alt="اللجنة الثقافية" class="department-image">
+          <h3 class="department-name">اللجنة الثقافية والإعلامية</h3>
+          <p class="department-desc">تهتم بتنظيم الفعاليات الثقافية ومعارض الفنية وإصدار النشرات الدورية وتغطية أنشطة الاتحاد إعلامياً.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.3s">
+            <img src="./assets/boy3.jpg" alt="أمين اللجنة الثقافية" class="official-avatar">
+            <h4 class="official-name">محمود عبد الله</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.4s">
+            <img src="./assets/girl2.jpg" alt="أmين مساعد اللجنة الثقافية" class="official-avatar">
+            <h4 class="official-name">فاطمة علي</h4>
+            <p class="official-role">أمين مساعد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- اللجنة الفنية -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+        <div class="department-header">
+          <img src="./assets/icon/hobby.png" alt="اللجنة الفنية" class="department-image">
+          <h3 class="department-name">اللجنة الفنية</h3>
+          <p class="department-desc">تنظيم الحفلات الغنائية والعروض المسرحية وورش العمل الفنية والمعارض والمشاركة في المناسبات المختلفة.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.4s">
+            <img src="./assets/girl1.jpg" alt="أmين اللجنة الفنية" class="official-avatar">
+            <h4 class="official-name">فاطمة علي</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.5s">
+            <img src="./assets/boy2.jpg" alt="أمين مساعد اللجنة الفنية" class="official-avatar">
+            <h4 class="official-name">أحمد سعيد</h4>
+            <p class="official-role">أمين مساعد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- اللجنة الرياضية -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+        <div class="department-header">
+          <img src="./assets/icon/game.png" alt="اللجنة الرياضية" class="department-image">
+          <h3 class="department-name">اللجنة الرياضية</h3>
+          <p class="department-desc">تنظيم البطولات الرياضية بين الكليات وتشجيع ممارسة الأنشطة الرياضية وتنمية الروح الرياضية بين الطلاب.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.5s">
+            <img src="./assets/boy1.jpg" alt="أمين اللجنة الرياضية" class="official-avatar">
+            <h4 class="official-name">خالد إبراهيم</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.6s">
+            <img src="./assets/boy3.jpg" alt="أمين مساعد اللجنة الرياضية" class="official-avatar">
+            <h4 class="official-name">محمد حسين</h4>
+            <p class="official-role">أمين مساعد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- اللجنة الاجتماعية -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
+        <div class="department-header">
+          <img src="./assets/icon/activism.png" alt="اللجنة الاجتماعية" class="department-image">
+          <h3 class="department-name">اللجنة الاجتماعية</h3>
+          <p class="department-desc">تنظيم الرحلات والزيارات والمعسكرات الطلابية والفعاليات الاجتماعية التي تعزز الترابط بين الطلاب.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.6s">
+            <img src="./assets/girl1.jpg" alt="أمين اللجنة الاجتماعية" class="official-avatar">
+            <h4 class="official-name">آية سعد</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.7s">
+            <img src="./assets/girl2.jpg" alt="أمين مساعد اللجنة الاجتماعية" class="official-avatar">
+            <h4 class="official-name">مريم محمد</h4>
+            <p class="official-role">أmين مساعد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- اللجنة العلمية -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">
+        <div class="department-header">
+          <img src="./assets/icon/scientific-idea.png" alt="اللجنة العلمية" class="department-image">
+          <h3 class="department-name">اللجنة العلمية</h3>
+          <p class="department-desc">تنظيم الندوات والمحاضرات العلمية وورش العمل التخصصية والمسابقات العلمية والمعارض المتخصصة.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.7s">
+            <img src="./assets/boy2.jpg" alt="أمين اللجنة العلمية" class="official-avatar">
+            <h4 class="official-name">يوسف محمد</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.8s">
+            <img src="./assets/girl3.jpg" alt="أمين مساعد اللجنة العلمية" class="official-avatar">
+            <h4 class="official-name">سلمى أحمد</h4>
+            <p class="official-role">أمين مساعد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- لجنة الأسر -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
+        <div class="department-header">
+          <img src="./assets/icon/government.png" alt="لجنة الأسر" class="department-image">
+          <h3 class="department-name">لجنة الأسر</h3>
+          <p class="department-desc">الإشراف على الأسر الطلابية ودعم أنشطتها وتنظيم المسابقات بين الأسر وتوثيق الروابط بين أعضائها.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.8s">
+            <img src="./assets/girl1.jpg" alt="أمين لجنة الأسر" class="official-avatar">
+            <h4 class="official-name">منة الله محمود</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="0.9s">
+            <img src="./assets/boy3.jpg" alt="أمين مساعد لجنة الأسر" class="official-avatar">
+            <h4 class="official-name">علي حسن</h4>
+            <p class="official-role">أmين مساعد</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- لجنة الجوالة -->
+      <div class="team-department-card wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
+        <div class="department-header">
+          <img src="./assets/icon/symbol.png" alt="لجنة الجوالة" class="department-image">
+          <h3 class="department-name">لجنة الجوالة</h3>
+          <p class="department-desc">تنظيم رحلات الكشافة والتخييم وأنشطة الهواء الطلق وتنمية روح التعاون والعwork الجماعي بين الطلاب.</p>
+        </div>
+        <div class="officials-grid">
+          <div class="official-card wow animate__animated animate__fadeInLeft" data-wow-delay="0.9s">
+            <img src="./assets/boy1.jpg" alt="أمين لجنة الجوالة" class="official-avatar">
+            <h4 class="official-name">أحمد محمد</h4>
+            <p class="official-role">أمين اللجنة</p>
+          </div>
+          <div class="official-card wow animate__animated animate__fadeInRight" data-wow-delay="1s">
+            <img src="./assets/girl2.jpg" alt="أمين مساعد لجنة الجوالة" class="official-avatar">
+            <h4 class="official-name">سارة عبد الله</h4>
+            <p class="official-role">أمين مساعد</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- قسم الاتحادات الفرعية - تصميم جديد -->
+<div id="locations" class="locations-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">الاتحادات الفرعية</h2> <br><br>
+  
+  <div class="locations-grid">
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.1s" onclick="window.location.href='colleges/كلية-الهندسة.html'">
+      <img src="./assets/fuculty/هندسة.png" alt="كلية الهندسة" class="location-logo">
+      <h3 class="location-name">اتحاد كلية الهندسة</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.2s" onclick="window.location.href='colleges/كلية-التجارة.html'">
+      <img src="./assets/fuculty/تجارة.png" alt="كلية التجارة" class="location-logo">
+      <h3 class="location-name">اتحاد كلية التجارة</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.3s" onclick="window.location.href='colleges/كلية-التربية.html'">
+      <img src="./assets/fuculty/تربية.png" alt="كلية التربية" class="location-logo">
+      <h3 class="location-name">اتحاد كلية التربية</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.4s" onclick="window.location.href='colleges/كلية-التربية-النوعية.html'">
+      <img src="./assets/fuculty/تربية نوعية.png" alt="كلية التربية النوعية" class="location-logo">
+      <h3 class="location-name">اتحاد كلية التربية النوعية</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.5s" onclick="window.location.href='colleges/كلية-التربية-الرياضية.html'">
+      <img src="./assets/fuculty/تربية رياضية.png" alt="كلية التربية الرياضية" class="location-logo">
+      <h3 class="location-name">اتحاد كلية التربية الرياضية</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.6s" onclick="window.location.href='colleges/كلية-التمريض.html'">
+      <img src="./assets/fuculty/تمريض.png" alt="كلية التمريض" class="location-logo">
+      <h3 class="location-name">اتحاد كلية التمريض</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.7s" onclick="window.location.href='colleges/كلية-التربية-للطفولة-المبكرة.html'">
+      <img src="./assets/fuculty/تربية طفولة.png" alt="كلية التربية للطفولة المبكرة" class="location-logo">
+      <h3 class="location-name">اتحاد كلية التربية للطفولة المبكرة</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.8s" onclick="window.location.href='colleges/كلية-العلوم.html'">
+      <img src="./assets/fuculty/علوم.png" alt="كلية العلوم" class="location-logo">
+      <h3 class="location-name">اتحاد كلية العلوم</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="0.9s" onclick="window.location.href='colleges/كلية-الطب.html'">
+      <img src="./assets/fuculty/طب.png" alt="كلية الطب" class="location-logo">
+      <h3 class="location-name">اتحاد كلية الطب</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="1s" onclick="window.location.href='colleges/كلية-الآداب.html'">
+      <img src="./assets/fuculty/اداب.png" alt="كلية الآداب" class="location-logo">
+      <h3 class="location-name">اتحاد كلية الآداب</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="1.1s" onclick="window.location.href='colleges/كلية-الصيدلة.html'">
+      <img src="./assets/fuculty/صيدلة.png" alt="كلية الصيدلة" class="location-logo">
+      <h3 class="location-name">اتحاد كلية الصيدلة</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="1.2s" onclick="window.location.href='colleges/كلية-تكنولوجيا-الإدارة.html'">
+      <img src="./assets/fuculty/mtis.png" alt="كلية تكنولوجيا الإدارة" class="location-logo">
+      <h3 class="location-name">اتحاد كلية تكنولوجيا الإدارة</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="1.3s" onclick="window.location.href='colleges/كلية-الحقوق.html'">
+      <img src="./assets/fuculty/حقوق.png" alt="كلية الحقوق" class="location-logo">
+      <h3 class="location-name">اتحاد كلية الحقوق</h3>
+    </div>
+    
+    <div class="location-card wow animate__animated animate__zoomIn" data-wow-delay="1.4s" onclick="window.location.href='colleges/كلية-العلاج-الطبيعي.html'">
+      <img src="./assets/fuculty/علاج طبيعي.png" alt="كلية العلاج الطبيعي" class="location-logo">
+      <h3 class="location-name">اتحاد كلية العلاج الطبيعي</h3>
+    </div>
+  </div>
+</div>
+
+<!-- قسم أين نحن - جديد -->
+<div id="where-we-are" class="where-we-are-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">أين نحن</h2>
+  
+  <div class="where-we-container">
+    <div class="map-container wow animate__animated animate__fadeInLeft">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13646.25269392273!2d32.26587516977539!3d31.25770899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f99dfe454f19a9%3A0x8b6c6a6b7d9e3b3d!2sPort%20Said%20University!5e0!3m2!1sen!2seg!4v1642345678901!5m2!1sen!2seg" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="location-info wow animate__animated animate__fadeInRight">
+      <h3>مكتب اتحاد الطلاب</h3>
+      <p><i class='bx bx-map'></i> العنوان: جامعة بورسعيد، بورسعيد، مصر</p>
+      <p><i class='bx bx-phone'></i> الهاتف: +1234567890</p>
+      <p><i class='bx bx-envelope'></i> البريد الإلكتروني: info@psu.edu.eg</p>
+      <p><i class='bx bx-time-five'></i> أوقات العمل: الأحد - الخميس: 8 ص - 4 م</p>
+    </div>
+  </div>
+</div>
+
+<!-- قسم آراء الطلاب - تصميم جديد -->
+<div class="testimonials-section">
+  <h2 class="section-title wow animate__animated animate__fadeIn">آراء وتجارب الطلاب</h2>
+  
+  <div class="testimonials-container">
+    <div class="testimonials-slider-new">
+      <div class="testimonial-slide-new active">
+        <div class="testimonial-card-new wow animate__animated animate__fadeIn">
+          <p class="testimonial-text-new">
+            تجربة رائعة مع اتحاد الجامعة، ساعدتني على تطوير مهاراتي القيادية والتعرف على أصدقاء جدد. الفعاليات منظمة بشكل محترف والفرص المتاحة للطلاب ممتازة. أنصح كل الطلاب بالانضمام لأنشطة الاتحاد.
+          </p>
+          
+          <div class="testimonial-author-new">
+            <img src="./assets/boy1.jpg" alt="طالب" class="author-avatar-new">
+            <div class="author-info-new">
+              <h4 class="author-name-new">محمد السيد</h4>
+              <p class="author-role-new">طالب بكلية الهندسة - عضو اللجنة الثقافية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-slide-new">
+        <div class="testimonial-card-new">
+          <p class="testimonial-text-new">
+            من أفضل التجارب في حياتي الجامعية، تعلمت الكثير عن العمل الجماعي وتنظيم الفعاليات. فريق العمل داعم ومحفز ويوفر فرص حقيقية للنمو الشخصي والمهني. أشكر اتحاد الجامعة على هذه الفرص الرائعة.
+          </p>
+          
+          <div class="testimonial-author-new">
+            <img src="./assets/girl3.jpg" alt="طالبة" class="author-avatar-new">
+            <div class="author-info-new">
+              <h4 class="author-name-new">سارة أحمد</h4>
+              <p class="author-role-new">طالبة بكلية التجارة - عضو اللجنة الفنية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-slide-new">
+        <div class="testimonial-card-new">
+          <p class="testimonial-text-new">
+            اتحاد الجامعة غير حياتي الجامعية تماماً، من خلاله اكتشفت شغفي بالعمل الطلابي وطورت مهاراتي في التواصل وإدارة المشاريع. الأنشطة متنوعة وتناسب جميع الاهتمامات والمهارات. تجربة لا تُعوّض.
+          </p>
+          
+          <div class="testimonial-author-new">
+            <img src="./assets/boy2.jpg" alt="طالب" class="author-avatar-new">
+            <div class="author-info-new">
+              <h4 class="author-name-new">أحمد محمود</h4>
+              <p class="author-role-new">طالب بكلية الطب - عضو اللجنة الرياضية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="testimonial-nav">
+      <div class="testimonial-nav-btn" onclick="changeTestimonialSlideNew(-1)"><i class='bx bx-chevron-right'></i></div>
+      <div class="testimonial-nav-btn" onclick="changeTestimonialSlideNew(1)"><i class='bx bx-chevron-left'></i></div>
+    </div>
+  </div>
+</div>
+
+<!-- الفوتر المعدل -->
+<div class="footer">
+  <div class="footer-content">
+    <!-- القسم الأول: الشعار والوصف والروابط الاجتماعية -->
+    <div class="footer-col wow animate__animated animate__fadeIn">
+      <div class="footer-logo">
+        <img src="./assets/PORT.png" alt="جامعة بورسعيد">
+        <img src="./assets/uonuon.png" alt="اتحاد طلاب جامعة بورسعيد">
+      </div>
+      
+      <p class="footer-about">
+        اتحاد طلاب جامعة بورسعيد هو الهيئة الطلابية الرسمية التي تمثل طلاب الجامعة وتعمل على تنظيم الأنشطة الطلابية والفعاليات المختلفة التي تخدم الطلاب وتطور مهاراتهم.
+      </p>
+      
+      <div class="footer-social">
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-facebook'></i></a>
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-instagram'></i></a>
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-twitter'></i></a>
+        <a href="#" target="_blank" class="footer-social-icon"><i class='bx bxl-youtube'></i></a>
+      </div>
+    </div>
+    
+    <!-- القسم الثالث: روابط الصفحة الرئيسية -->
+    <div class="footer-col wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
+      <h3 class="footer-links-title">الصفحة الرئيسية</h3>
+      <ul class="footer-links">
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#events">أبرز الفعاليات</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#vision">رؤيتنا ورسالتنا</a></li>
+        <li><a href="#committees">لجان الاتحاد</a></li>
+        <li><a href="#stats">إحصائيات وأرقام</a></li>
+        <li><a href="#team">لوحة الاتحاد</a></li>
+        <li><a href="#locations">الاتحادات الفرعية</a></li>
+        <li><a href="#where-we-are">أين نحن</a></li>
+      </ul>
+    </div>
+    
+    <!-- القسم الرابع: معلومات الاتصال -->
+    <div class="footer-col wow animate__animated animate__fadeIn" data-wow-delay="0.4s">
+      <h3 class="footer-links-title">معلومات الاتصال</h3>
+      <ul class="footer-links">
+        <li><i class='bx bx-map'></i> جامعة بورسعيد، بورسعيد، مصر</li>
+        <li><i class='bx bx-phone'></i> +1234567890</li>
+        <li><i class='bx bx-envelope'></i> info@psu.edu.eg</li>
+        <li><i class='bx bx-time-five'></i> الأحد - الخميس: 8 ص - 4 م</li>
+      </ul>
+    </div>
+    
+    <!-- الخط الفاصل -->
+    <div class="footer-divider"></div>
+    
+    <!-- حقوق النشر -->
+    <div class="footer-copyright">
+      <span>&copy; 2025 جميع الحقوق محفوظة لاتحاد طلاب جامعة بورسعيد</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // تهيئة تأثير الجسيمات باللون الأبيض
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // تهيئة مكتبة WOW.js
+    new WOW().init();
+    
+    // ضبط ارتفاع السلايدر الرئيسي
+    function adjustMainSliderHeight() {
+      const mainSlider = document.querySelector('.main-slider');
+      mainSlider.style.height = window.innerHeight + 'px';
+    }
+    
+    adjustMainSliderHeight();
+    window.addEventListener('resize', adjustMainSliderHeight);
+    
+    // تشغيل السلايدر الرئيسي
+    initMainSlider();
+    
+    // تفعيل البحث
+    setupSearch();
+    
+    // تشغيل عداد الإحصائيات عند الوصول للقسم
+    setupCounters();
+    
+    // تشغيل سلايدر آراء الطلاب الجديد
+    initTestimonialsSliderNew();
+    
+    // تشغيل سلاider الأحداث
+    initEventsSlider();
+    
+    // إعداد الروابط للتمرير السلس
+    setupSmoothScrolling();
+  });
+
+  // السلايدر الرئيسي
+  function initMainSlider() {
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    
+    // التبديل التلقائي كل 8 ثواني
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 8000);
+  }
+
+  // سلايدر الأحداث
+  function initEventsSlider() {
+    const events = [
+      {
+        image: './assets/activ1.jpg',
+        date: '15 مارس 2025',
+        title: 'المؤتمر الطلابي السنوي',
+        description: 'ينظم اتحاد طلاب كلية الهندسة المؤتمر الطلابي السنوي تحت رعاية اتحاد الجامعة، يتضمن المؤتمر ورش عمل وعروض تقديمية.',
+        committeeLogo: './assets/fuculty/هندسة.png',
+        committeeName: 'لجنة الهندسة'
+      },
+      {
+        image: './assets/activ2.jpg',
+        date: '22 فبراير 2025',
+        title: 'البطولة الرياضية بين الكليات',
+        description: 'بطولة رياضية كبرى تنظمها اللجنة الرياضية باتحاد الجامعة، تشمل منافسات في كرة القدم، كرة السلة، تنس الطاولة.',
+        committeeLogo: './assets/fuculty/تربية رياضية.png',
+        committeeName: 'لجنة رياضية'
+      },
+      {
+        image: './assets/activ3.jpg',
+        date: '10 أبريل 2025',
+        title: 'المهرجان الثقافي والفني',
+        description: 'مهرجان ثقافي فني تنظمه اللجنة الثقافية والفنية باتحاد الجامعة، يشمل عروضاً مسرحية، معارض فنية، أمسيات شعرية.',
+        committeeLogo: './assets/fuculty/اداب.png',
+        committeeName: 'لجنة ثقافية'
+      }
+    ];
+
+    let currentEvent = 0;
+    const eventCard = document.querySelector('.event-card');
+    const prevBtn = document.getElementById('prev-event');
+    const nextBtn = document.getElementById('next-event');
+
+    function updateEventCard() {
+      const event = events[currentEvent];
+      eventCard.querySelector('.event-card-image img').src = event.image;
+      eventCard.querySelector('.event-card-date').innerHTML = `<i class='bx bx-calendar'></i> ${event.date}`;
+      eventCard.querySelector('.event-card-title').textContent = event.title;
+      eventCard.querySelector('.event-card-desc').textContent = event.description;
+      eventCard.querySelector('.event-card-committee img').src = event.committeeLogo;
+      eventCard.querySelector('.event-card-committee span').textContent = event.committeeName;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentEvent = (currentEvent - 1 + events.length) % events.length;
+      updateEventCard();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentEvent = (currentEvent + 1) % events.length;
+      updateEventCard();
+    });
+
+    // التبديل التلقائي كل 7 ثواني
+    setInterval(() => {
+      currentEvent = (currentEvent + 1) % events.length;
+      updateEventCard();
+    }, 7000);
+  }
+
+  // سلايدر آراء الطلاب الجديد - التبديل كل 5 ثواني
+  function initTestimonialsSliderNew() {
+    const slides = document.querySelectorAll('.testimonial-slide-new');
+    let currentSlide = 0;
+    
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    
+    // التبديل التلقائي كل 5 ثواني
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
+  }
+  
+  // تغيير شريحة آراء الطلاب يدوياً
+  function changeTestimonialSlideNew(direction) {
+    const slides = document.querySelectorAll('.testimonial-slide-new');
+    let currentSlide = 0;
+    
+    slides.forEach((slide, index) => {
+      if (slide.classList.contains('active')) {
+        currentSlide = index;
+      }
+    });
+    
+    slides[currentSlide].classList.remove('active');
+    const newSlide = (currentSlide + direction + slides.length) % slides.length;
+    slides[newSlide].classList.add('active');
+  }
+
+  // عداد الإحصائيات عند الوصول للقسم
+  function setupCounters() {
+    const statsSection = document.querySelector('.stats-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(statsSection);
+  }
+
+  // عداد الإحصائيات
+  function initCounters() {
+    const counters = [
+      { id: 'events-counter', target: 85, duration: 3000 },
+      { id: 'participants-counter', target: 3500, duration: 2500 },
+      { id: 'committees-counter', target: 7, duration: 2000 },
+      { id: 'families-counter', target: 42, duration: 2800 }
+    ];
+    
+    counters.forEach(counter => {
+      const element = document.getElementById(counter.id);
+      const increment = counter.target / (counter.duration / 16);
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < counter.target) {
+          element.textContent = Math.floor(current).toLocaleString();
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = counter.target.toLocaleString();
+        }
+      };
+      
+      updateCounter();
+    });
+  }
+
+  // تفعيل البحث - محسّن
+  function setupSearch() {
+    const searchIcon = document.getElementById('search-icon');
+    const searchBar = document.getElementById('search-bar');
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    
+    searchIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchBar.classList.toggle('active');
+      
+      if (searchBar.classList.contains('active')) {
+        searchInput.focus();
+      }
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container') && !e.target.closest('.search-bar')) {
+        searchBar.classList.remove('active');
+        searchResults.style.display = 'none';
+      }
+    });
+    
+    searchBar.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+    
+    // تفعيل زر البحث
+    searchBtn.addEventListener('click', function() {
+      performSearch();
+    });
+    
+    // تفعيل البحث عند الضغط على Enter
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+    
+    // وظيفة البحث الفعلية - محسنة
+    function performSearch() {
+      const searchTerm = searchInput.value.trim();
+      if (searchTerm !== '') {
+        // جمع جميع النصوص في الصفحة التي يمكن البحث فيها
+        const searchableElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li, .event-card-title, .event-card-desc, .committee-name-large, .committee-desc-large, .department-name, .department-desc, .official-name, .official-role, .location-name, .testimonial-text-new, .author-name-new, .author-role-new, .footer-about');
+        
+        const results = [];
+        const searchTermLower = searchTerm.toLowerCase();
+        
+        searchableElements.forEach(element => {
+          const text = element.textContent.trim();
+          if (text.toLowerCase().includes(searchTermLower)) {
+            // الحصول على القسم الأب الذي يحتوي على النص
+            const parentSection = element.closest('section') || element.closest('div');
+            let sectionId = '';
+            
+            if (parentSection) {
+              sectionId = parentSection.id || '';
+              // إذا لم يكن للقسم id، نحاول العثور على id في أحد العناصر الأب
+              if (!sectionId) {
+                let parentWithId = parentSection;
+                while (parentWithId && !parentWithId.id) {
+                  parentWithId = parentWithId.parentElement;
+                }
+                if (parentWithId) sectionId = parentWithId.id;
+              }
+            }
+            
+            if (sectionId) {
+              results.push({
+                text: text.length > 100 ? text.substring(0, 100) + '...' : text,
+                section: sectionId,
+                element: element
+              });
+            }
+          }
+        });
+        
+        // عرض نتائج البحث
+        displaySearchResults(results, searchTerm);
+      } else {
+        searchResults.innerHTML = '<p style="text-align: center; padding: 20px;">يرجى إدخال كلمة للبحث</p>';
+        searchResults.style.display = 'block';
+      }
+    }
+    
+    // عرض نتائج البحث
+    function displaySearchResults(results, searchTerm) {
+      if (results.length > 0) {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'block';
+        
+        const resultsHeader = document.createElement('h3');
+        resultsHeader.textContent = `نتائج البحث عن: "${searchTerm}" (${results.length} نتيجة)`;
+        resultsHeader.style.color = 'var(--accent-color)';
+        resultsHeader.style.marginBottom = '15px';
+        resultsHeader.style.textAlign = 'center';
+        searchResults.appendChild(resultsHeader);
+        
+        results.forEach((result, index) => {
+          if (index < 10) { // عرض أول 10 نتائج فقط
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.style.padding = '10px';
+            resultItem.style.borderBottom = '1px solid var(--glass-border)';
+            resultItem.style.cursor = 'pointer';
+            
+            // تمييز الكلمة التي تم البحث عنها في النص
+            const highlightedText = result.text.replace(new RegExp(searchTerm, 'gi'), match => {
+              return `<span class="search-highlight">${match}</span>`;
+            });
+            
+            resultItem.innerHTML = `
+              <p style="margin: 0; font-weight: 500;">${highlightedText}</p>
+              <small style="color: var(--accent-color);">القسم: ${result.section}</small>
+            `;
+            
+            resultItem.addEventListener('click', () => {
+              // الانتقال إلى القسم الذي يحتوي على النتيجة
+              smoothScrollToSectionById(result.section);
+              searchBar.classList.remove('active');
+              searchResults.style.display = 'none';
+              
+              // إبراز النص الذي تم البحث عنه
+              highlightText(result.element, searchTerm);
+            });
+            
+            searchResults.appendChild(resultItem);
+          }
+        });
+        
+        if (results.length > 10) {
+          const moreResults = document.createElement('p');
+          moreResults.textContent = `عرض ${results.length - 10} نتيجة أخرى...`;
+          moreResults.style.textAlign = 'center';
+          moreResults.style.marginTop = '10px';
+          moreResults.style.color = 'var(--accent-color)';
+          searchResults.appendChild(moreResults);
+        }
+      } else {
+        searchResults.innerHTML = '<p style="text-align: center; padding: 20px;">لا توجد نتائج للبحث</p>';
+        searchResults.style.display = 'block';
+      }
+    }
+    
+    // إبراز النص الذي تم البحث عنه
+    function highlightText(element, searchTerm) {
+      // إزالة أي تمييز سابق
+      const existingHighlights = document.querySelectorAll('.search-highlight');
+      existingHighlights.forEach(highlight => {
+        const parent = highlight.parentNode;
+        parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+        parent.normalize();
+      });
+      
+      // تمييز النص الجديد
+      const text = element.textContent;
+      const regex = new RegExp(searchTerm, 'gi');
+      const newText = text.replace(regex, match => {
+        return `<span class="search-highlight" style="background-color: yellow; color: black;">${match}</span>`;
+      });
+      
+      element.innerHTML = newText;
+      
+      // إزالة التمييز بعد 5 ثواني
+      setTimeout(() => {
+        const highlights = element.querySelectorAll('.search-highlight');
+        highlights.forEach(highlight => {
+          const parent = highlight.parentNode;
+          parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+          parent.normalize();
+        });
+      }, 5000);
+    }
+  }
+  
+  // الانتقال إلى قسم معين بسلاسة
+  function smoothScrollToSectionById(sectionId) {
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+      const navBarHeight = document.querySelector('.nav-bar').offsetHeight;
+      const targetPosition = targetSection.offsetTop - navBarHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      console.warn(`القسم بالمعرف ${sectionId} غير موجود`);
+    }
+  }
+
+  // إعداد الروابط للتمرير السلس
+  function setupSmoothScrolling() {
+    // جمع كل الروابط التي تشير إلى أقسام في الصفحة
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    
+    // إضافة مستمع حدث لكل رابط
+    internalLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // منع السلوك الافتراضي للرابط
+        e.preventDefault();
+        
+        // الحصول على الـ ID من سمة href للرابط
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          // حساب الموقع مع مراعاة ارتفاع شريط التنقل
+          const navBarHeight = document.querySelector('.nav-bar').offsetHeight;
+          const targetPosition = targetSection.offsetTop - navBarHeight;
+          
+          // التمرير السلس إلى القسم
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // تحديث عنوان URL بدون إعادة تحميل الصفحة
+          history.pushState(null, null, `#${targetId}`);
+        }
+      });
+    });
+    
+    // إذا كان هناك هاش في URL، قم بالتمرير إلى القسم عند تحميل الصفحة
+    if (window.location.hash) {
+      setTimeout(() => {
+        const targetSection = document.getElementById(window.location.hash.substring(1));
+        if (targetSection) {
+          const navBarHeight = document.querySelector('.nav-bar').offsetHeight;
+          window.scrollTo({
+            top: targetSection.offsetTop - navBarHeight,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }
+</script>
+</body>
+</html>
